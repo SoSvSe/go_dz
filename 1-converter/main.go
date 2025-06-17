@@ -28,13 +28,6 @@ func main() {
 		break
 	}
 
-	// conversion(userInput, "eur", "rub")
-	// fmt.Print(userInput)
-	// const usdEur float64 = 1.1
-	// const usdRub float64 = 96.4
-	// eurRub := usdRub / usdEur
-	// fmt.Print(eurRub)
-
 }
 
 func getUserNameMoney() string {
