@@ -18,7 +18,12 @@ func main() {
 			continue
 		}
 		moneyCOnvert = moneyNameConvert(moneyName)
-		// fmt.Println(moneyCOnvert)
+
+		if moneyCOnvert == moneyName {
+			fmt.Println("Не правильная валюта для конвертации")
+			continue
+		}
+
 		if moneyCOnvert != "u" && moneyCOnvert != "e" && moneyCOnvert != "p" {
 			fmt.Println("Введено неправильное значение для конвертации")
 			continue
@@ -37,7 +42,7 @@ func getUserNameMoney() string {
 	fmt.Println("e- если хотите конвертировать евро")
 	fmt.Println("p - если хотите конвертировать рубли")
 	fmt.Scan(&moneyName)
-	// fmt.Println(moneyName)
+
 	return moneyName
 }
 
@@ -66,14 +71,16 @@ func conversion(cash float64, original string, target string) float64 {
 			convertCash = cash * 110
 		}
 	case "p":
-		// fmt.Println("1")
+
 		switch target {
 		case "u":
 			convertCash = cash * 100
 		case "e":
-			// fmt.Println("!")
+
 			convertCash = cash * 110
 		}
+	default:
+
 	}
 	return convertCash
 }
@@ -106,6 +113,6 @@ func moneyNameConvert(moneyName string) string {
 			moneyNameConvert = ""
 		}
 	}
-	// fmt.Println(moneyNameConvert)
+
 	return moneyNameConvert
 }
