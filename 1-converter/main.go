@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 func main() {
+
 	for {
 		var moneyName string
 		var moneyCOnvert string
@@ -54,30 +55,35 @@ func getUserInput() float64 {
 }
 
 func conversion(cash float64, original string, target string) float64 {
+	const ue = 0.9
+	const ur = 100
+	const eu = 1.1
+	const er = 110
+
 	var convertCash float64
 	switch original {
 	case "u":
 		switch target {
 		case "e":
-			convertCash = cash * 0.9
+			convertCash = cash * ue
 		case "p":
-			convertCash = cash * 100
+			convertCash = cash * ur
 		}
 	case "e":
 		switch target {
 		case "u":
-			convertCash = cash * 1.1
+			convertCash = cash * eu
 		case "p":
-			convertCash = cash * 110
+			convertCash = cash * er
 		}
 	case "p":
 
 		switch target {
 		case "u":
-			convertCash = cash * 100
+			convertCash = cash * ur
 		case "e":
 
-			convertCash = cash * 110
+			convertCash = cash * er
 		}
 	default:
 
