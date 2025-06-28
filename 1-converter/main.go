@@ -1,0 +1,124 @@
+package main
+
+import "fmt"
+
+func main() {
+
+	for {
+		var moneyName string
+		var moneyCOnvert string
+		moneyName = getUserNameMoney()
+		if moneyName != "u" && moneyName != "e" && moneyName != "p" {
+
+			fmt.Println("Не правильно ввели валюту")
+			continue
+		}
+		userInput := getUserInput()
+		if userInput == 0 {
+			fmt.Println("Введено неправильное или нулевое значение")
+			continue
+		}
+		moneyCOnvert = moneyNameConvert(moneyName)
+
+		if moneyCOnvert == moneyName {
+			fmt.Println("Не правильная валюта для конвертации")
+			continue
+		}
+
+		if moneyCOnvert != "u" && moneyCOnvert != "e" && moneyCOnvert != "p" {
+			fmt.Println("Введено неправильное значение для конвертации")
+			continue
+		}
+		cash := conversion(userInput, moneyName, moneyCOnvert)
+		fmt.Println(cash)
+		break
+	}
+
+}
+
+func getUserNameMoney() string {
+	var moneyName string
+	fmt.Println("Введите:")
+	fmt.Println("u - если хотите конвертировать доллары")
+	fmt.Println("e- если хотите конвертировать евро")
+	fmt.Println("p - если хотите конвертировать рубли")
+	fmt.Scan(&moneyName)
+
+	return moneyName
+}
+
+func getUserInput() float64 {
+	var userInput float64
+	fmt.Print("Ввод число для конвертации : ")
+	fmt.Scan(&userInput)
+	return userInput
+}
+
+func conversion(cash float64, original string, target string) float64 {
+	const ue = 0.9
+	const ur = 100
+	const eu = 1.1
+	const er = 110
+
+	var convertCash float64
+	switch original {
+	case "u":
+		switch target {
+		case "e":
+			convertCash = cash * ue
+		case "p":
+			convertCash = cash * ur
+		}
+	case "e":
+		switch target {
+		case "u":
+			convertCash = cash * eu
+		case "p":
+			convertCash = cash * er
+		}
+	case "p":
+
+		switch target {
+		case "u":
+			convertCash = cash * ur
+		case "e":
+
+			convertCash = cash * er
+		}
+	default:
+
+	}
+	return convertCash
+}
+
+func moneyNameConvert(moneyName string) string {
+	var moneyNameConvert string
+	switch moneyName {
+	case "u":
+		fmt.Println("Введите валюту в которую нужно конвертировать: ")
+		fmt.Println("E - евро")
+		fmt.Println("Р - рубль")
+		fmt.Scan(&moneyNameConvert)
+		if moneyName == "e" && moneyName == "p" {
+			moneyNameConvert = ""
+		}
+	case "e":
+		fmt.Println("Введите валюту в которую нужно конвертировать: ")
+		fmt.Println("U - долар")
+		fmt.Println("Р - рубль")
+		fmt.Scan(&moneyNameConvert)
+		if moneyName == "u" && moneyName == "p" {
+			moneyNameConvert = ""
+		}
+	case "p":
+		fmt.Println("Введите валюту в которую нужно конвертировать: ")
+		fmt.Println("E - евро")
+		fmt.Println("U - долар")
+		fmt.Scan(&moneyNameConvert)
+		if moneyName == "e" && moneyName == "u" {
+			moneyNameConvert = ""
+		}
+	}
+
+	return moneyNameConvert
+}
